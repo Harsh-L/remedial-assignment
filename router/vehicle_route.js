@@ -34,13 +34,13 @@ router.get('/insert', (req, res) => {
 
 router.post('/insert', upload.single('myfile'), (req, res) => {
     var insert_data = new vehicle({
-        vehicle_brand: req.body.brand,
-        category_name: req.body.cat,
+        vehicle_brand: req.body.vehicle_brand,
+        category_name: req.body.category_id,
         vehicle_picture: req.body.vehicle_pic,
         price: req.body.price,
-        depreciation: req.body.dep,
-        number_of_years: req.body.years,
-        total_price: req.body.tprice
+        depreciation: req.body.depreciation,
+        number_of_years: req.body.no_of_years,
+        total_price: req.body.total_price
     });
     insert_data.save((err, data) => {
         if(err) throw err;
