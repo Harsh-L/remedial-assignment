@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+</head>
+<body>
+    <%if(typeof(data) !== 'undefined'){ %>
+        <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>Brand</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Depreciation</th>
+                <th>Number of Years</th>
+                <th>Total Price</th>
+                <th>Picture</th>
+            </tr>
+            <% data.forEach(item => { %>
+                <tr>
+                    <td><%= item._id</td>
+                    <td><%= item.vehicle_brand</td>
+                    <td><%= item.category_name %></td>
+                    <td><%= item.price</td>
+                    <td><%= item.depreciation</td>
+                    <td><%= item.no_of_years</td>
+                    <td><%= item.total_price</td>
+                    <td><img alt="Alternative text" src="../uploads/<%= item.vehicle_pic%>" width="50" height="50" /></td>
+                </tr>
+            <% }) %>
+        </table>
+    <% } else {%>
+        <p style="color: red;">No Records Found</p>
+    <% } %>
+</body>
+</html>

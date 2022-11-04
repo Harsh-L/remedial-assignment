@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insert</title>
+</head>
+<body>
+    <div align="center">
+        <form action="/vehicle/insert" method="post">
+            <input type="number" name="_id" id="_id" placeholder="ID">
+            <input type="text" name="vehicle_brand" id="vehicle_brand" placeholder="Brand">
+            <select name="category_id" id="category_id" >
+                    <% data.forEach(item => { %>
+                        <option value="<% data.category">data.category_name</option>
+                    <% }) %>
+            </select>
+            <input type="file"value="UPLOAD" name="vehicle_pic" id="vehicle_pic" placeholder="Vehicle Image">
+            <input type="number" name="price" id="price" placeholder="Price">
+            <input type="number" name="depreciation" id="depreciation" placeholder="Depreciation">
+            <input type="number" name="no_of_years" id="no_of_years" placeholder="Number of Years">
+            <input type="number" name="total_price" id="total_price" placeholder="Total Price" readonly>
+            <input type="submit" value="submit">
+        </form>
+    </div>
+
+    <div>
+        <form action="/vehicle/">
+            <input type="submit" value="View Data">
+        </form>
+    </div>
+</body>
+</html>
