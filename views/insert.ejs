@@ -8,25 +8,26 @@
 </head>
 <body>
     <div align="center">
-        <form action="/vehicle/insert" method="post">
-            <input type="number" name="_id" id="_id" placeholder="ID">
-            <input type="text" name="vehicle_brand" id="vehicle_brand" placeholder="Brand">
+        <form action="/vehicle/insert" method="post" enctype="multipart/form-data">
+            <!-- <input type="number" name="_id" id="_id" placeholder="ID"> <br> <br> -->
+            <input type="text" name="vehicle_brand" id="vehicle_brand" placeholder="Brand"> <br><br>
             <select name="category_id" id="category_id" >
                     <% data.forEach(item => { %>
-                        <option value="<% data.category">data.category_name</option>
+                        <option value="<%= item.c_id %>"><%= item.category_name %></option>
                     <% }) %>
-            </select>
-            <input type="file"value="UPLOAD" name="vehicle_pic" id="vehicle_pic" placeholder="Vehicle Image">
-            <input type="number" name="price" id="price" placeholder="Price">
-            <input type="number" name="depreciation" id="depreciation" placeholder="Depreciation">
-            <input type="number" name="no_of_years" id="no_of_years" placeholder="Number of Years">
-            <input type="number" name="total_price" id="total_price" placeholder="Total Price" readonly>
-            <input type="submit" value="submit">
+            </select> <br><br>
+            <input type="file"value="UPLOAD" name="vehicle_pic" id="vehicle_pic" placeholder="Vehicle Image"> <br><br>
+            <input type="number" name="price" id="price" placeholder="Price"> <br><br>
+            <input type="number" name="depreciation" id="depreciation" placeholder="Depreciation"> <br><br>
+            <input type="number" name="no_of_years" id="no_of_years" placeholder="Number of Years"> <br><br>
+            <input type="number" name="total_price" id="total_price" placeholder="Total Price"> <br><br>
+            <input type="submit" value="submit"> <br>
         </form>
     </div>
 
-    <div>
+    <div align="center">
         <form action="/vehicle/">
+            <br> <br>
             <input type="submit" value="View Data">
         </form>
     </div>

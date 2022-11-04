@@ -21,13 +21,13 @@
             </tr>
             <% data.forEach(item => { %>
                 <tr>
-                    <td><%= item._id</td>
-                    <td><%= item.vehicle_brand</td>
+                    <td><%= item._id %></td>
+                    <td><%= item.vehicle_brand %></td>
                     <td><%= item.category_name %></td>
-                    <td><%= item.price</td>
-                    <td><%= item.depreciation</td>
-                    <td><%= item.no_of_years</td>
-                    <td><%= item.total_price</td>
+                    <td><%= item.price %></td>
+                    <td><%= item.depreciation %></td>
+                    <td><%= item.no_of_years %></td>
+                    <td><%= item.total_price %></td>
                     <td><img alt="Alternative text" src="../uploads/<%= item.vehicle_pic%>" width="50" height="50" /></td>
                 </tr>
             <% }) %>

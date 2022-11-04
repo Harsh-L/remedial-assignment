@@ -1,50 +1,51 @@
-const express = require('express');
-const route = express();
-const category_model = require('../models/vehicle_cat');
-const vehicle = require('../models/vehicle');
+const router = require('express').Router();
 const multer = require('multer');
-const vehicle_model = require('../models/vehicle');
+const path = require('path');
+const vehicle = require('../models/vehicle');
+const category = require('../models/vehicle_cat');
 
-// inage uploads
-var storage = multer.diskStorage({
-    destination: function (req, res, cb) {
-        cb(null, "./public/uploads");
+const options = multer.diskStorage({
+    destination : function(req, file, cb) 
+    {
+        cb(null, './uploads')
     },
-    filename: (req, file, cb) => {
-        cb(null, file.filename + "_" + Date.now() + "_" + file.originalname);
+    filename : function(req, file, cb)
+    {
+        cb(null, Date.now() + path.extname(file.originalname))
     }
-})
-
-const upload = multer({
-    storage: storage
 });
 
-// index
-route.get('/', async (req, res) =>{
-    const records = await vehicle.find();
-    const category = await category_model.find();
-    res.render('index',{data:records});
-})
+const upload = multer({ storage: options });
 
-// insert
-route.get('/insert',upload.single('image') ,(req, res) => {
-    var data = new vehicle_model({
-        vehicle_brand : String,
-        category : Number,
-        vehicle_pic: String,
-        price : Number,
-        deprecation : Number,
-        no_of_years : Number,
-        total_price : Number
+
+router.get('/', (req, res) => {
+    vehicle.find((err, data) => {
+        if(err) throw err;
+        res.render('show', {data: data});
+    });
+});
+
+router.get('/insert', (req, res) => {
+    category.find((err, data) => {
+        if(err) throw err;
+        res.render('insert', {data: data});
+    });
+});
+
+router.post('/insert', upload.single('myfile'), (req, res) => {
+    var insert_data = new vehicle({
+        vehicle_brand: req.body.brand,
+        category_name: req.body.cat,
+        vehicle_picture: req.body.vehicle_pic,
+        price: req.body.price,
+        depreciation: req.body.dep,
+        number_of_years: req.body.years,
+        total_price: req.body.tprice
+    });
+    insert_data.save((err, data) => {
+        if(err) throw err;
+        res.send("Inserted Successfully...");
     })
+});
 
-    const category = category_model.find();
-    res.render('insert', {data : category});
-})
-
-// category insert
-route.get('/insert', async (req, res) => {
-    const category = await category_model.find();
-    res.render('insert', {data : category});
-})
-module.exports = route;
+module.exports = router;

@@ -10,5 +10,5 @@ app.use(express.json());
 app.use('/vehicle', route);
 
 app.listen(process.env.PORT, () => {
-    console.log(`http://localhost:${process.env.PORT}`);
+    console.log(`http://localhost:${process.env.PORT}/vehicle/`);
 })
